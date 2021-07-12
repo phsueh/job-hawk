@@ -5,6 +5,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1>Hello {this.props.username}</h1>
+                <button onClick={this.props.logout}>log out</button>
             </div>
         )
     }

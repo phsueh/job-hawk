@@ -28,8 +28,14 @@ export default class SignInForm extends Component {
             if (userInfo.token) {
                 this.props.login(userInfo)
             } else {
-                alert(userInfo.error)
+                const errorVar = userInfo.errors[0][0]
+                alert(errorVar)
+                // console.log(userInfo.errors)
             }
+            this.setState({
+                username: '',
+                password: ''
+            })
         })
     }
     
