@@ -27,19 +27,12 @@ export default function SignUpForm(props) {
             body: JSON.stringify(userData)
         })
         .then(res => res.json())
-        .then(userInfo => {
-            console.log(userInfo)
-            if (userInfo.token) {
-                props.login(userInfo)
-            } else {
-                alert(userInfo.error)
-            }
-            setFormData({
+        .then(userInfo => {props.login(userInfo)
+            this.setState({
                 username: '',
                 password: ''
             })
         })
-
     }
 
     console.log(formData)
