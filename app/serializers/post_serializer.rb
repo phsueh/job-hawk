@@ -1,4 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
   attributes :id, :content, :private
-  has_one :user_id
+  has_many :comments
 end
