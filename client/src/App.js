@@ -6,6 +6,7 @@ import SignInForm from './component/SignInForm'
 import SignUpForm from './component/SignUpForm'
 import ProfileForm from './component/ProfileForm'
 import Profile from './component/Profile'
+import { Button } from 'antd';
 
 
 class App extends Component {
@@ -68,7 +69,10 @@ class App extends Component {
         token: userInfo.token
       })
       localStorage.token = userInfo.token
-      this.props.history.push('/home')
+      // console.log(this.props.history)
+      if (this.props.history.location.pathname === '/') {
+        this.props.history.push('/home')
+      }
     } else {
         alert(userInfo.errors)
     }
@@ -113,15 +117,16 @@ class App extends Component {
         <Route exact path='/'>
           <SignInForm login={this.login}/>
           <SignUpForm login={this.login}/>
-          <Home username={this.state.username} logout={this.logOut}/>
-        </Route>
-        <Route exact path='/home'>
-          <button onClick={this.logOut}>log out</button>
-          <Profile user={this.state}/>
-          <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment}/>
+          <Home />
         </Route>
         <Route exact path='/editprofile'>
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
+        </Route>
+        <Route exact path='/home'>
+          <h1>Hello {this.state.username}</h1>
+          <Button type="primary" className="button is-primary" onClick={this.logOut}>Log out</Button>
+          <Profile user={this.state}/>
+          <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment}/>
         </Route>
       </Switch>
     )

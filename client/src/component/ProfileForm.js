@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import { Form, Input, Button } from 'antd'
 
 class ProfileForm extends Component {
     
@@ -26,7 +27,7 @@ class ProfileForm extends Component {
                 // console.log(userInfo)
                 if (userInfo.token) {
                 this.setState({
-                    username: userInfo.user.username || '',
+                    username: userInfo.user.username,
                     bio: userInfo.user.bio || '',
                     experience: userInfo.user.experience || '',
                     location: userInfo.user.location || '',
@@ -41,7 +42,7 @@ class ProfileForm extends Component {
       }
     
     handleSubmit = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         fetch(`/users/${this.props.user.id}`, {
             method: 'PATCH',
             headers: {"Content-type":"application/json"},
@@ -64,32 +65,28 @@ class ProfileForm extends Component {
         // console.log(this.props.user)
         return (
             <>
-            <Link to='/home'>← Back to Home</Link>
-            <form onSubmit={this.handleSubmit}>
-                <label htmlFor='username'>Username</label>
-                <input type ='text' name='username' id='username' defaultValue={this.state.username}/>
+            <br/>
+            <Button type='link' size='large'><Link to='/home'>← Back to Home</Link></Button>
+            <h1 className='profileHeader'>Profile</h1>
+            <br/>
+            <Form  size='large' layout='horizontal' name="basic" labelCol={{span: 7}} onFinish={this.handleSubmit} wrapperCol={{span: 10}}>
+                {/* <label htmlFor='username'>Username</label> */}
+                <Form.Item label='Username' ><Input disabled={true} type ='text' name='username' id='username' value={this.state.username}/></Form.Item>
                 {/* <input type ='password' name='password' id='password' value={this.state.password}/> */}
-                <br/>
-                <label htmlFor='bio'>Bio</label>
-                <input type ='text' name='bio' id='bio' value={this.state.bio} onChange={this.handleChange}/>
-                <br/>
-                <label htmlFor='experience'>Experience</label>
-                <input type ='text' name='experience' id='experience' value={this.state.experience} onChange={this.handleChange}/>
-                <br/>
-                <label htmlFor='location'>Location</label>                
-                <input type ='text' name='location' id='location' value={this.state.location} onChange={this.handleChange}/>
-                <br/>
-                <label htmlFor='ask_salary'>Asking Salary</label>
-                <input type ='number' name='ask_salary' id='ask_salary' value={this.state.ask_salary} onChange={this.handleChange}/>
-                <br/>
-                <label htmlFor='current_position'>Current Position</label>
-                <input type ='text' name='current_position' id='current_position' value={this.state.current_position} onChange={this.handleChange}/>
-                <br/>
-                <label htmlFor='desired_job_title'>Desired job title</label>
-                <input type ='text' name='desired_job_title' id='desired_job_title' value={this.state.desired_job_title} onChange={this.handleChange}/>
-                <br/>
-                <button type='submit'>Update</button>
-            </form>
+                {/* <label htmlFor='bio'>Bio</label> */}
+                <Form.Item label ='Bio' ><Input type ='text' name='bio' id='bio' value={this.state.bio} onChange={this.handleChange}/></Form.Item>
+                {/* <label htmlFor='experience'>Experience</label> */}
+                <Form.Item label='Experience'><Input type ='text' name='experience' id='experience' value={this.state.experience} onChange={this.handleChange}/></Form.Item>
+                {/* <label htmlFor='location'>Location</label>                 */}
+                <Form.Item label='Location'><Input type ='text' name='location' id='location' value={this.state.location} onChange={this.handleChange}/></Form.Item>
+                {/* <label htmlFor='ask_salary'>Asking Salary</label> */}
+                <Form.Item label='Asking Salary'><Input type ='number' name='ask_salary' id='ask_salary' value={this.state.ask_salary} onChange={this.handleChange}/></Form.Item>
+                {/* <label htmlFor='current_position'>Current Position</label> */}
+                <Form.Item label='Current Position'><Input type ='text' name='current_position' id='current_position' value={this.state.current_position} onChange={this.handleChange}/></Form.Item>
+                {/* <label htmlFor='desired_job_title'>Desired job title</label> */}
+                <Form.Item label='Desired job title'><Input type ='text' name='desired_job_title' id='desired_job_title' value={this.state.desired_job_title} onChange={this.handleChange}/></Form.Item>
+                <Form.Item wrapperCol={{span: 14, offset: 11}}><Button type='primary' htmlType="submit">Update</Button></Form.Item>
+            </Form>
             </>
         )
     }
