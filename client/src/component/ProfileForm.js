@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
+import { withRouter, Link } from 'react-router-dom'
 
-export default class ProfileForm extends Component {
+class ProfileForm extends Component {
     
     state = {
-        username: this.props.user.username,
+        username: this.props.user.username || '',
         // password: this.props.user.password,
-        bio: this.props.user.bio,
-        experience: this.props.user.experience,
-        location: this.props.user.location,
-        ask_salary: this.props.user.ask_salary,
-        current_position: this.props.user.current_position,
-        desired_job_title: this.props.user.desired_job_title,
-    }
-
+        bio: this.props.user.bio || '',
+        experience: this.props.user.experience || '',
+        location: this.props.user.location || '',
+        ask_salary: this.props.user.ask_salary || 0,
+        current_position: this.props.user.current_position || '',
+        desired_job_title: this.props.user.desired_job_title || '',
+    }  
+ 
     componentDidMount(){
         console.log("logged in")
           fetch('/me', {
@@ -25,13 +26,13 @@ export default class ProfileForm extends Component {
                 console.log(userInfo)
                 if (userInfo.token) {
                 this.setState({
-                    username: userInfo.user.username,
-                    bio: userInfo.user.bio,
-                    experience: userInfo.user.experience,
-                    location: userInfo.user.location,
-                    ask_salary: userInfo.user.ask_salary,
-                    current_position: userInfo.user.current_position,
-                    desired_job_title: userInfo.user.desired_job_title,
+                    username: userInfo.user.username || '',
+                    bio: userInfo.user.bio || '',
+                    experience: userInfo.user.experience || '',
+                    location: userInfo.user.location || '',
+                    ask_salary: userInfo.user.ask_salary || 0,
+                    current_position: userInfo.user.current_position || '',
+                    desired_job_title: userInfo.user.desired_job_title || '',
               })
         } else {
           alert(userInfo.error)
@@ -47,8 +48,9 @@ export default class ProfileForm extends Component {
             body: JSON.stringify(this.state)
         })
         .then(res => res.json())
-        .then(updatedInfo => this.props.updateProfile(updatedInfo)
-        )
+        .then(updatedInfo => {this.props.updateProfile(updatedInfo)
+        this.props.history.push('/home')
+        })
     }
 
     handleChange = (event) => {
@@ -58,9 +60,11 @@ export default class ProfileForm extends Component {
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.props.user)
+        // console.log(this.state)
+        // console.log(this.props.user)
         return (
+            <>
+            <Link to='/home'>← Back to Home</Link>
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='username'>Username</label>
                 <input type ='text' name='username' id='username' defaultValue={this.state.username}/>
@@ -86,6 +90,8 @@ export default class ProfileForm extends Component {
                 <br/>
                 <button type='submit'>Update</button>
             </form>
+            </>
         )
     }
 }
+export default withRouter(ProfileForm)

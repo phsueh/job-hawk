@@ -14,7 +14,9 @@ password_digest = BCrypt::Engine::hash_secret('abc123', salt)
 
 
 eric = User.create(username: 'eric' ,password_digest: password_digest, bio:'leader of bananas rockets and curlies', experience:'seasoned vet', location:'earth', ask_salary: 250000, current_position: "Instructor at Flat Iron School", desired_job_title:"Owner of Flat Iron School")
+paul = User.create(username: 'paul' ,password_digest: password_digest)
 
 post_one = Post.create(user_id: eric.id, content: "chickens", private: false)
+post_two = Post.create(user_id: paul.id, content: "Turkey", private: false)
 
 comment_one = Comment.create(post_id: post_one.id, user_id: eric.id, content: "I love chicken!")

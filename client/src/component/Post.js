@@ -1,57 +1,23 @@
 import React from 'react'
 import CommentContainer from './CommentContainer'
-import { useState } from 'React'
+import CommentForm from './CommentForm'
 
-export default function Post({post}) {
+
+export default function Post({post, userId, addComment}) {
     
-    const {comment, setComment} = useState('')
-
     const handleClick = (e) => {
-        toggle = e.target.nextElementSibling.style.display = "none" ? "block" : "none"
-        e.target.nextElementSibling.style = toggle
-        e.target.text === '⌄' ? e.target.text='⌃' : e.target.text='⌄'
+        const toggle = e.target.nextElementSibling.style.display === "none" ? "block" : "none"
+        e.target.nextElementSibling.style.display = toggle
+        e.target.textContent === '︿' ? e.target.textContent='Comments' : e.target.textContent='︿'
     }
     
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        content = e.target.content.text
-        comment = {
-            user_id: id,
-            post_id: post.id,
-            content: content
-        }
-        fetch('/comments', {
-            method: 'POST',
-            headers: {
-                "Content-type":"application/json"
-            },
-            body: JSON.stringify(comment)
-        })
-        .then(res => res.json())
-        .then(commentObj => {
-            if (commentObj.id) {
-                addComment(commentObj)
-            } else {
-                alert(error)
-            }
-        })
-    }
-
-    const handleChange = (e) => {
-        setComment({
-            [e.target.name]: e.target.value
-        })
-    }
-
     return (
         <div>
+            <h4>{post.username}</h4>
             <p>{post.content}</p>
-                <button onClick={handleClick}>⌄</button>
+                <button onClick={handleClick}>Comments</button>
             <div style={{display: 'none'}}>
-                <form classname='commentForm' onSubmit={handleSubmit}>
-                    <label htmlFor={comment}>Comments</label>
-                    <input name='content' type='text' value={comment} onChange={handleChange}/>
-                </form>
+                <CommentForm postId={post.id} userId={userId} addComment={addComment}/>
                 <CommentContainer comments={post.comments}/>
             </div>
         </div>

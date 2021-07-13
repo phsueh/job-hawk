@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default class SignInForm extends Component {
+class SignInForm extends Component {
     
     state = {
         username: '',
@@ -28,6 +29,7 @@ export default class SignInForm extends Component {
                 username: '',
                 password: ''
             })
+            this.props.history.push('/home')
         })
     }
     // handleClick = (e) => {
@@ -35,7 +37,7 @@ export default class SignInForm extends Component {
     // }
     
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
             <div>
             <button onClick={this.handleClick} >login</button>
@@ -48,3 +50,4 @@ export default class SignInForm extends Component {
         )
     }
 }
+export default withRouter(SignInForm)

@@ -5,17 +5,19 @@ rescue_from ActiveRecord::RecordNotFound, with: :show_error
 
     def login
         user = User.find_by(username: params[:username])
+        posts = Post.all
         if user && user.authenticate(params[:password])
             wristband = encode_token(user_id: user.id)
-            render json: {user: UserSerializer.new(user), token: wristband} 
+            render json: {user: UserSerializer.new(user), token: wristband, posts: ActiveModel::Serializer::CollectionSerializer.new(posts, each_serializer: PostSerializer)} 
         else
             render json: {errors:"Wrong username or password"}
         end
     end
 
     def me
+        posts = Post.all
         wristband = encode_token({user_id: @user.id})
-        render json: {user: UserSerializer.new(@user), token: wristband}
+        render json: {user: UserSerializer.new(@user), token: wristband, posts: ActiveModel::Serializer::CollectionSerializer.new(posts, each_serializer: PostSerializer)}
     end
 
     def create
