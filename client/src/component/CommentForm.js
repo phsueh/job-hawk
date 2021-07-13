@@ -28,6 +28,7 @@ export default function CommentForm({postId, userId, addComment}) {
             } else {
                 alert(newCommentObj.errors)
             }
+            setComment('')
         })
     }
 

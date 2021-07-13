@@ -15,7 +15,7 @@ class ProfileForm extends Component {
     }  
  
     componentDidMount(){
-        console.log("logged in")
+        // console.log("logged in")
           fetch('/me', {
             headers: {
               "authorization" : localStorage.token
@@ -23,7 +23,7 @@ class ProfileForm extends Component {
           })
             .then(res => res.json())
             .then(userInfo => {
-                console.log(userInfo)
+                // console.log(userInfo)
                 if (userInfo.token) {
                 this.setState({
                     username: userInfo.user.username || '',

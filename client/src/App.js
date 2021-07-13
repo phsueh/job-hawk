@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   updateProfile = (updatedInfo) => {
-    console.log(updatedInfo)
+    // console.log(updatedInfo)
     if (updatedInfo.id) {
       // console.log("Runs This")
       this.setState({
@@ -68,6 +68,7 @@ class App extends Component {
         token: userInfo.token
       })
       localStorage.token = userInfo.token
+      this.props.history.push('/home')
     } else {
         alert(userInfo.errors)
     }

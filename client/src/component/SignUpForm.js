@@ -33,7 +33,6 @@ function SignUpForm(props) {
                 username: '',
                 password: ''
             })
-            props.history.push('/home')
         })
     }
 

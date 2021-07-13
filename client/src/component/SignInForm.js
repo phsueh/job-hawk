@@ -29,7 +29,6 @@ class SignInForm extends Component {
                 username: '',
                 password: ''
             })
-            this.props.history.push('/home')
         })
     }
     // handleClick = (e) => {
