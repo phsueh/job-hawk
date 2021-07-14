@@ -1,19 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Descriptions, Button } from 'antd'
 
 export default function Profile({user}) {
   return (
-    <div>
-      <h2>Profile</h2>
-      <p><strong>Username:</strong> {user.username}</p>
-       {/* <p>Password: user.password</p> */}
-      <p><strong>Bio:</strong> {user.bio}</p>
-      <p><strong>Experience:</strong> {user.experience}</p>
-      <p><strong>Location:</strong> {user.location}</p>
-      <p><strong>Asking Salary:</strong> {user.ask_salary}</p>
-      <p><strong>Current position:</strong> {user.current_position}</p>
-      <p><strong>Desired job title:</strong> {user.desired_job_title}</p>
-      <Link to='/editprofile'>Edit Profile</Link>
+    <div className='border'>
+      <Descriptions  title="Profile" column={1} >
+        <Descriptions.Item label="UserName">{user.username}</Descriptions.Item>
+        <Descriptions.Item label="Bio">{user.bio}</Descriptions.Item>
+        <Descriptions.Item label="Experience">{user.experience}</Descriptions.Item>
+        <Descriptions.Item label="Location">{user.location}</Descriptions.Item>
+        <Descriptions.Item label="Asking Salary">{user.ask_salary}</Descriptions.Item>
+        <Descriptions.Item label="Current Position">{user.current_position}</Descriptions.Item>
+        <Descriptions.Item label="Desired job title">{user.desired_job_title}</Descriptions.Item>
+      </Descriptions>
+      <Link to='/editprofile'><Button type='primary'>Edit Profile</Button></Link>
     </div>
   )
 }

@@ -6,7 +6,8 @@ import SignInForm from './component/SignInForm'
 import SignUpForm from './component/SignUpForm'
 import ProfileForm from './component/ProfileForm'
 import Profile from './component/Profile'
-import { Button } from 'antd';
+import Header from './component/Header'
+import { Divider } from 'antd'
 
 
 class App extends Component {
@@ -110,9 +111,43 @@ class App extends Component {
     })
   }
 
+  addPost = (newPostObj) => {
+    const newPostArr = [...this.state.posts, newPostObj]
+    this.setState({
+      posts: newPostArr
+    })
+  }
+
+  deletePost = (deletedPost) => {
+    const newPostArray = this.state.posts.filter(post => post.id !== deletedPost.id)
+    this.setState({
+      posts: newPostArray
+    })
+  }
+
+  deleteComment = (deletedComment) => {
+    const CurrentPost = this.state.posts.find(post => post.id === deletedComment.post_id)
+    const newCommentArray = CurrentPost.comments.filter(comment => comment.id !== deletedComment.id)
+    CurrentPost.comments = newCommentArray
+    const newPostArr = this.state.posts.map(post => {
+    if (post.id === CurrentPost.id) {
+      return CurrentPost
+    } else {
+      return post
+    }
+  })
+  this.setState({
+    posts: newPostArr
+  })
+  }
+
   render() {
     // console.log(this.state.posts)
     return (
+      <>
+      <Route path='/:a'>
+          <Header logOut={this.logOut} user={this.state}/>
+      </Route>
       <Switch>
         <Route exact path='/'>
           <SignInForm login={this.login}/>
@@ -123,12 +158,14 @@ class App extends Component {
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
         </Route>
         <Route exact path='/home'>
-          <h1>Hello {this.state.username}</h1>
-          <Button type="primary" className="button is-primary" onClick={this.logOut}>Log out</Button>
-          <Profile user={this.state}/>
-          <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment}/>
+          <div >
+            <Profile user={this.state}/>
+            <Divider type="vertical"/>
+            <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/>
+          </div>
         </Route>
       </Switch>
+      </>
     )
   }
 }

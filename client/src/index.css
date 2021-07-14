@@ -4,3 +4,39 @@
   font-size: xx-large;
   font-weight: bold;
 }
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  width: 100%;
+  padding-right: 2px; 
+}
+
+.header #logout {
+  margin: 5px;
+}
+
+.border {
+  /* border: 1pt black solid; */
+  float: left;
+  width: 49%;
+  height: 500pt;
+  padding: 40pt;
+  margin:.2%;
+}
+
+span.ant-descriptions-item-content {
+  font-size: 20pt;
+}
+
+span.ant-descriptions-item-label {
+  font-size: 20pt;
+  font-weight: bolder;
+}
+
+div.ant-descriptions-title {
+  font-size: 25pt;
+  font-weight: bolder;
+  text-decoration: underline;
+}

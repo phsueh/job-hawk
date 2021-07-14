@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :show_error
     before_action :authorized, only: [:me]
-    before_action :find_user, only: [:update]
+    before_action :find_user, only: [:update, :destroy]
 
     def login
         user = User.find_by(username: params[:username])
@@ -33,6 +33,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :show_error
 
     def update
         @user.update(update_user_params)
+        render json: @user
+    end
+
+    def destroy
+        @user.destroy
         render json: @user
     end
 
