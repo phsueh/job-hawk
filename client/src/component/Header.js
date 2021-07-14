@@ -4,18 +4,23 @@ import { Button, Menu} from 'antd';
 export default function Header({logOut, user}) {
   
   const handleClick = (e) => {
-    fetch(`/users/${user.id}`, {
-        method: "DELETE",
-        headers: {"authorization": user.token}
-    })
-    .then(res => res.json())
-    .then(response => {
-        if (response.id) {
-            logOut()
-        } else {
-            alert(response.error)
-        }
-    })
+    if (window.confirm("Are you sure you want to delete your account?")) {
+        
+        fetch(`/users/${user.id}`, {
+            method: "DELETE",
+            headers: {"authorization": user.token}
+        })
+        .then(res => res.json())
+        .then(response => {
+            if (response.id) {
+                logOut()
+            } else {
+                alert(response.error)
+            }
+        })
+    } else {
+        return
+    }
   }
   
     return (

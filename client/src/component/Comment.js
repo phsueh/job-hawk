@@ -19,8 +19,6 @@ export default function CommentComponent({comment, deleteComment, userId}) {
     }
 
     const deleteButton = () => {
-        console.log(comment.user_id)
-        console.log(userId)
         if (comment.user_id === userId) {
             return [<Button danger onClick={handleDelete} icon={<DeleteOutlined />}size='small' shape='circle'/>]
         }
