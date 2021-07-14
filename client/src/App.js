@@ -158,7 +158,7 @@ class App extends Component {
       </Route>
       <Switch>
         <Route exact path='/'>
-          <AppBar position="static">
+          <AppBar position="static" edge='end'>
             <Toolbar>
               <SignInForm login={this.login}/> 
               <SignUpForm login={this.login}/>

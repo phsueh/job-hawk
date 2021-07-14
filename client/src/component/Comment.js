@@ -1,6 +1,9 @@
 import React from 'react'
 import { Comment, Button} from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
 
 export default function CommentComponent({comment, deleteComment, userId}) {
 
@@ -26,7 +29,12 @@ export default function CommentComponent({comment, deleteComment, userId}) {
 
     return (
         <div>
-            <Comment author={comment.username} content={comment.content} actions={deleteButton()}/>
+            <ListItem alignItems="flex-start">
+                <ListItemText
+                primary={<Comment author={comment.username} content={comment.content} actions={deleteButton()}/>}
+                />       
+            </ListItem>
+            <Divider variant="inset" component="li" />
         </div>
     )
 }

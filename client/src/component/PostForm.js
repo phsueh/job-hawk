@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { Form, Input, Button } from 'antd'
+
 
 export default function PostForm({userId, addPost}) {
     

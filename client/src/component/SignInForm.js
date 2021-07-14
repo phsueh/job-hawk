@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -66,8 +66,8 @@ class SignInForm extends Component {
             {/* <AppBar position="static">
                 <Toolbar>             */}
                     <form onSubmit={this.handleSubmit} style={{display:'block'}}>
-                    <input type ='text' name='username' id='username' value={this.state.username} onChange={this.handleChange}/>
-                    <input type ='password' name='password' id='password' value={this.state.password} onChange={this.handleChange}/>
+                    <input style={{color:'black'}} type ='text' name='username' id='username' value={this.state.username} onChange={this.handleChange}/>
+                    <input style={{color:'black'}} type ='password' name='password' id='password' value={this.state.password} onChange={this.handleChange}/>
                     <Button type='submit'>Login</Button>
                     </form>
                 {/* </Toolbar>

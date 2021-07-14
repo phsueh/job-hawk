@@ -3,7 +3,23 @@ import CommentContainer from './CommentContainer'
 import CommentForm from './CommentForm'
 import { Comment, Tooltip, Button} from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-// import moment from 'moment';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+
+const useStyles = makeStyles((theme) => ({
+    
+    root: {
+      width: '100%',
+      maxWidth: '50ch',
+      backgroundColor: theme.palette.background.paper,
+    },
+    inline: {
+      display: 'inline',
+    },
+  }));
 
 
 export default function Post({post, userId, addComment, deletePost, deleteComment}) {
@@ -42,17 +58,19 @@ export default function Post({post, userId, addComment, deletePost, deleteCommen
     
     return (
         <div>
-            <Comment author={post.username} content={post.content} actions={deleteButton()}
-            // datetime={
-                // <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                // <span>{moment().fromNow()}</span>
-                // </Tooltip>}
-            />           
-                <button type='primary' onClick={handleClick}>Comments</button>
+            <ListItem alignItems="flex-start">
+            <ListItemText
+            primary={<Comment author={post.username} content={post.content} actions={deleteButton()}/>}
+            />       
+            <button type='primary' onClick={handleClick}>Comments</button>
             <div style={{display: 'none'}}>
+                <List>
+                    {renderComments()}
+                </List>
                 <CommentForm postId={post.id} userId={userId} addComment={addComment}/>
-                {renderComments()}
             </div>
+            </ListItem>
+            <Divider variant="inset" component="li" />
         </div>
     )
 }
