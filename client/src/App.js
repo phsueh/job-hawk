@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Home from './component/Home'
 import PostContainer from './component/PostContainer'
 import SignInForm from './component/SignInForm'
 import SignUpForm from './component/SignUpForm'
 import ProfileForm from './component/ProfileForm'
+import Profile from './component/Profile'
+import { Button } from 'antd';
 
 
-export default class App extends Component {
+class App extends Component {
 
   state = {
     id: 0,
@@ -35,9 +37,9 @@ export default class App extends Component {
   }
 
   updateProfile = (updatedInfo) => {
-    console.log(updatedInfo)
+    // console.log(updatedInfo)
     if (updatedInfo.id) {
-      console.log("Runs This")
+      // console.log("Runs This")
       this.setState({
         bio: updatedInfo.bio,
         experience: updatedInfo.experience,
@@ -52,6 +54,7 @@ export default class App extends Component {
   }
 
   login = (userInfo) => {
+    // console.log(userInfo)
     if (userInfo.token) {
       this.setState({
         id: userInfo.user.id,
@@ -62,10 +65,14 @@ export default class App extends Component {
         ask_salary: userInfo.user.ask_salary,
         current_position: userInfo.user.current_position,
         desired_job_title: userInfo.user.desired_job_title,
-        posts: userInfo.user.posts,
+        posts: userInfo.posts,
         token: userInfo.token
       })
       localStorage.token = userInfo.token
+      // console.log(this.props.history)
+      if (this.props.history.location.pathname === '/') {
+        this.props.history.push('/home')
+      }
     } else {
         alert(userInfo.errors)
     }
@@ -85,24 +92,44 @@ export default class App extends Component {
       token: ''
     })
     localStorage.clear()
+    this.props.history.push('/')
+  }
+
+  addComment = (newCommentObj) => {
+    const CurrentPost = this.state.posts.find(post => post.id === newCommentObj.post_id)
+    CurrentPost.comments = [...CurrentPost.comments, newCommentObj]
+    const newPostArr = this.state.posts.map(post => {
+      if (post.id === CurrentPost.id) {
+        return CurrentPost
+      } else {
+        return post
+      }
+    })
+    this.setState({
+      posts: newPostArr
+    })
   }
 
   render() {
-    console.log(localStorage.token)
+    // console.log(this.state.posts)
     return (
       <Switch>
         <Route exact path='/'>
           <SignInForm login={this.login}/>
           <SignUpForm login={this.login}/>
-          <Home username={this.state.username} logout={this.logOut}/>
+          <Home />
         </Route>
-        <Route path='/profile'>
+        <Route exact path='/editprofile'>
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
         </Route>
-        <Route path='/posts'>
-          <PostContainer/>
+        <Route exact path='/home'>
+          <h1>Hello {this.state.username}</h1>
+          <Button type="primary" className="button is-primary" onClick={this.logOut}>Log out</Button>
+          <Profile user={this.state}/>
+          <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment}/>
         </Route>
       </Switch>
     )
   }
 }
+export default withRouter(App)

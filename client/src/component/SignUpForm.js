@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default function SignUpForm(props) {
+function SignUpForm(props) {
 
     const [formData, setFormData] = useState({
         username: '',
@@ -28,14 +29,14 @@ export default function SignUpForm(props) {
         })
         .then(res => res.json())
         .then(userInfo => {props.login(userInfo)
-            this.setState({
+            setFormData({
                 username: '',
                 password: ''
             })
         })
     }
 
-    console.log(formData)
+    // console.log(formData)
     return (
         <form onSubmit={handleSubmit}>
             <input type ='text' name='username' id='username' value={formData.username} onChange={handleChange}/>
@@ -45,3 +46,4 @@ export default function SignUpForm(props) {
 
     )
 }
+export default withRouter(SignUpForm)

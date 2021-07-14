@@ -2,18 +2,15 @@ import React from 'react'
 
 export default function Search(props) {
 
-    const handleChange
-
-    const handleSearch = (event) => {
-
+    let searchedPosition = (e) => {
+        props.handleSearch(e.target.value)
+        console.log(e.target.value)
     }
 
     return (
-        <div>
-            <form onSubmit={handleSearch}>
-                <input type="text" name="search" id="search"/>
+        <form onSubmit={props.handleSubmit}>
+            <input type="text" name="search" id="search" value={props.searchPosition} onChange={searchedPosition}/>
             <button type="submit">Search</button>
-            </form>
-        </div>
+        </form>
     )
 }
