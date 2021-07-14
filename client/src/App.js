@@ -8,6 +8,12 @@ import ProfileForm from './component/ProfileForm'
 import Profile from './component/Profile'
 import Header from './component/Header'
 import { Divider } from 'antd'
+import { Layout, Menu } from 'antd'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+
+const { Footer, Sider, Content } = Layout;
 
 
 class App extends Component {
@@ -97,6 +103,7 @@ class App extends Component {
   }
 
   addComment = (newCommentObj) => {
+    console.log(newCommentObj)
     const CurrentPost = this.state.posts.find(post => post.id === newCommentObj.post_id)
     CurrentPost.comments = [...CurrentPost.comments, newCommentObj]
     const newPostArr = this.state.posts.map(post => {
@@ -143,6 +150,7 @@ class App extends Component {
 
   render() {
     // console.log(this.state.posts)
+    console.log(this.state)
     return (
       <>
       <Route path='/:a'>
@@ -150,8 +158,12 @@ class App extends Component {
       </Route>
       <Switch>
         <Route exact path='/'>
-          <SignInForm login={this.login}/>
-          <SignUpForm login={this.login}/>
+          <AppBar position="static">
+            <Toolbar>
+              <SignInForm login={this.login}/> 
+              <SignUpForm login={this.login}/>
+            </Toolbar>
+          </AppBar>
           <Home />
         </Route>
         <Route exact path='/editprofile'>

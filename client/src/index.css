@@ -40,3 +40,11 @@ div.ant-descriptions-title {
   font-weight: bolder;
   text-decoration: underline;
 }
+
+.container {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 500px;
+  vertical-align: middle
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { withRouter } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 function SignUpForm(props) {
 
@@ -41,7 +42,7 @@ function SignUpForm(props) {
         <form onSubmit={handleSubmit}>
             <input type ='text' name='username' id='username' value={formData.username} onChange={handleChange}/>
             <input type ='password' name='password' id='password' value={formData.password} onChange={handleChange}/>
-            <button type='submit'>Create Account</button>
+            <Button type='submit'>Create Account</Button>
         </form>
 
     )

@@ -51,12 +51,14 @@ export default class Home extends Component {
         //     return positionObj.searchResult
         // })
         return (
-            <div>
+
+            <div class="container">
                 {/* <Link to='/profile'>Profile</Link>
                 <Link to='/posts'>Posts</Link> */}
                 <Search handleSearch = {this.handleSearchResults}searchPosition = {this.state.searchPosition} handleSubmit = {this.handleSubmit}/>
                 <SearchContainer jobs={this.state.jobs["SearchResult"]["SearchResultItems"]}/>
             </div>
+ 
         )
     }
 }
