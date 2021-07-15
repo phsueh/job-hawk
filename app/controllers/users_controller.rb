@@ -15,7 +15,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :show_error
     end
 
     def me
+        # byebug
         posts = Post.all
+        profiles = User.all.where("id <> #{@user.id}")
         wristband = encode_token({user_id: @user.id})
         render json: {user: UserSerializer.new(@user), token: wristband, posts: ActiveModel::Serializer::CollectionSerializer.new(posts, each_serializer: PostSerializer)}
     end

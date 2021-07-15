@@ -47,6 +47,9 @@ export default function Header({logOut, user}) {
         <div className='header' >
         <AppBar position="fixed" edge='start'>
             <Toolbar >
+            <Typography variant="h4" className={classes.title} style={{color:'white'}}>
+                Hello {user.username}
+            </Typography>
                 <Typography variant="h6" className={classes.title}>
                     <NavLink to='/home' style={{color:'white'}}>Home</NavLink>
                 </Typography>

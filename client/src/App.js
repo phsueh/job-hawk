@@ -71,7 +71,7 @@ class App extends Component {
   }
 
   login = (userInfo) => {
-    // console.log(userInfo)
+    console.log(userInfo)
     if (userInfo.token) {
       this.setState({
         id: userInfo.user.id,
