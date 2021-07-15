@@ -14,13 +14,19 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
         render json: @post
     end
 
+    def public
+        # byebug
+        posts = Post.where(private: nil)
+        render json: posts
+    end
+
     private
     def find_post
         @post = Post.find(params[:id])
     end
     
     def post_params
-        params.permit(:content, :user_id)
+        params.permit(:content, :user_id, :private)
     end
 
     def show_errors(invalid)

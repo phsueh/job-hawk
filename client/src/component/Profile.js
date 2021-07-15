@@ -4,7 +4,7 @@ import { Descriptions, Button } from 'antd'
 
 export default function Profile({user}) {
   return (
-    <div className='border'>
+    <div id='profile'>
       <Descriptions  title="Profile" column={1} >
         <Descriptions.Item label="UserName">{user.username}</Descriptions.Item>
         <Descriptions.Item label="Bio">{user.bio}</Descriptions.Item>

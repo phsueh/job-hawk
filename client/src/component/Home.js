@@ -52,7 +52,7 @@ export default class Home extends Component {
         // })
         return (
 
-            <div class="container">
+            <div >
                 {/* <Link to='/profile'>Profile</Link>
                 <Link to='/posts'>Posts</Link> */}
                 <Search handleSearch = {this.handleSearchResults}searchPosition = {this.state.searchPosition} handleSubmit = {this.handleSubmit}/>

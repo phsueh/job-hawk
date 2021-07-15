@@ -31,7 +31,7 @@ export default function CommentComponent({comment, deleteComment, userId}) {
         <div>
             <ListItem alignItems="flex-start">
                 <ListItemText
-                primary={<Comment author={comment.username} content={comment.content} actions={deleteButton()}/>}
+                primary={<Comment author={comment.username} content={comment.content} actions={deleteButton()}/>}  
                 />       
             </ListItem>
             <Divider variant="inset" component="li" />

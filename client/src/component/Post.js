@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -17,17 +18,20 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
     },
     inline: {
-      display: 'inline',
+      display: 'block',
     },
   }));
 
 
-export default function Post({post, userId, addComment, deletePost, deleteComment}) {
+function Post({post, userId, addComment, deletePost, deleteComment, history}) {
     
+    const classes = useStyles();
+
     const handleClick = (e) => {
-        const toggle = e.target.nextElementSibling.style.display === "none" ? "block" : "none"
-        e.target.nextElementSibling.style.display = toggle
-        e.target.textContent === '︿' ? e.target.textContent='Comments' : e.target.textContent='︿'
+        // console.log(e.target.parentElement.nextElementSibling)
+        const toggle = e.target.parentElement.nextElementSibling.style.display === "none" ? "block" : "none"
+        e.target.parentElement.nextElementSibling.style.display = toggle
+        e.target.textContent === 'Comments ▲' ? e.target.textContent='Comments ▼' : e.target.textContent='Comments ▲'
     }
 
     const renderComments = () => {
@@ -55,22 +59,22 @@ export default function Post({post, userId, addComment, deletePost, deleteCommen
             return [<Button danger onClick={handleDelete} icon={<DeleteOutlined />} size='small' shape='circle'/>]
         }
     }
-    
+    // console.log(localStorage.token)
     return (
-        <div>
+        <div >
             <ListItem alignItems="flex-start">
             <ListItemText
-            primary={<Comment author={post.username} content={post.content} actions={deleteButton()}/>}
-            />       
-            <button type='primary' onClick={handleClick}>Comments</button>
+            primary={<Comment author={post.username} content={post.content} actions={deleteButton()}>
+            <Button type={post.comments ? 'primary' : 'disabled'} size='small' onClick={handleClick}>Comments ▼</Button>
             <div style={{display: 'none'}}>
-                <List>
-                    {renderComments()}
-                </List>
-                <CommentForm postId={post.id} userId={userId} addComment={addComment}/>
+                {renderComments()}
+                {history.location.pathname === '/' ? '' : <CommentForm postId={post.id} userId={userId} addComment={addComment}/> }
             </div>
+            </Comment>}
+            /> 
             </ListItem>
             <Divider variant="inset" component="li" />
         </div>
     )
 }
+export default withRouter(Post)

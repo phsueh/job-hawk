@@ -3,6 +3,7 @@ import Post from './Post'
 import PostForm from './PostForm'
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -18,21 +19,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function PostContainer({posts, userId, addComment, addPost, deletePost, deleteComment}) {
+function PostContainer({posts, userId, addComment, addPost, deletePost, deleteComment, history}) {
     
     const classes = useStyles();
     // console.log(comments) 
     const postList = posts.map(post => {
         return <Post key={post.id} post={post} userId={userId} addComment={addComment} deletePost={deletePost} deleteComment={deleteComment}/>
     })
-    
+    // console.log(history.location.pathname)
     return (
-        <div className='border'>
+        <div id='postsContainer'>
             <h2>Job Forum</h2>
-            {posts.length > 0 ? <PostForm userId={userId} addPost={addPost}/> : ''}
+            {history.location.pathname === '/' ? '' : <PostForm userId={userId} addPost={addPost}/> }
             <List className={classes.root}>
             {postList}
             </List>
         </div>
     )
 }
+export default withRouter(PostContainer)

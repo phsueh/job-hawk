@@ -33,7 +33,8 @@ class ApplicationController < ActionController::API
   end
 
   def authorized
-      render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+    posts = Post.all
+    render json: { message: 'Please log in' , posts: ActiveModel::Serializer::CollectionSerializer.new(posts, each_serializer: PostSerializer)}, status: :unauthorized unless logged_in?
   end
 
 end

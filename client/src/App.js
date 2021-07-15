@@ -40,6 +40,15 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(this.login)
+    } else {
+      fetch('/posts/public')
+      .then(res => res.json())
+      .then(publicPosts => {
+        console.log(publicPosts)
+        this.setState({
+          posts: publicPosts,
+        })
+      })
     }
   }
 
@@ -86,6 +95,8 @@ class App extends Component {
   }
 
   logOut = () => {
+    const publicposts = this.state.posts.filter(post => !!post.private === false)
+    console.log(publicposts)
     this.setState({
       id: 0,
       username: '',
@@ -95,7 +106,7 @@ class App extends Component {
       ask_salary: 0,
       current_position: '',
       desired_job_title: '',
-      posts: [],
+      posts: publicposts,
       token: ''
     })
     localStorage.clear()
@@ -150,7 +161,6 @@ class App extends Component {
 
   render() {
     // console.log(this.state.posts)
-    console.log(this.state)
     return (
       <>
       <Route path='/:a'>
@@ -164,16 +174,19 @@ class App extends Component {
               <SignUpForm login={this.login}/>
             </Toolbar>
           </AppBar>
-          <Home />
+          <div className='mainPageContainer'>
+            <Home />
+            {Array.isArray(this.state.posts) ? <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/> : ''}
+          </div>
         </Route>
         <Route exact path='/editprofile'>
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
         </Route>
         <Route exact path='/home'>
-          <div >
+          <div className='mainPageContainer'>
             <Profile user={this.state}/>
             <Divider type="vertical"/>
-            <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/>
+           {Array.isArray(this.state.posts) ? <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/> : ''}
           </div>
         </Route>
       </Switch>
