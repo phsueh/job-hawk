@@ -23,7 +23,7 @@ function PostContainer({posts, userId, addComment, addPost, deletePost, deleteCo
     
     const classes = useStyles();
     // console.log(comments) 
-    const postList = posts.map(post => {
+    const postList = posts.reverse().map(post => {
         return <Post key={post.id} post={post} userId={userId} addComment={addComment} deletePost={deletePost} deleteComment={deleteComment}/>
     })
     // console.log(history.location.pathname)
