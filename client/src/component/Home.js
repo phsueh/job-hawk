@@ -67,7 +67,7 @@ export default class Home extends Component {
                 <Link to='/posts'>Posts</Link> */}
                 <Search handleSearch = {this.handleSearchResults}searchPosition = {this.state.searchPosition} handleSubmit = {this.handleSubmit}/>
                 <SearchContainer jobs={this.state.jobs["SearchResult"]["SearchResultItems"]}/>
-                <Pagination defaultCurrent={1} current total={this.state.jobs.SearchResult.SearchResultCountAll} onChange={this.handleChange} pageSize={25} disabled={this.state.jobs.SearchResult.SearchResultItems.length === 0} showSizeChanger={false} style={{textAlign:'center'}}/>
+                <Pagination defaultCurrent={1} current total={this.state.jobs.SearchResult.SearchResultCountAll} onChange={this.handleChange} defaultPageSize={25} disabled={this.state.jobs.SearchResult.SearchResultItems.length === 0} showSizeChanger={false} style={{textAlign:'center'}}/>
             </div>
  
         )
