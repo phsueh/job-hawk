@@ -28,9 +28,10 @@ function Post({post, userId, addComment, deletePost, deleteComment, history}) {
     const classes = useStyles();
 
     const handleClick = (e) => {
+        let comments = e.target.parentElement.nextElementSibling
         // console.log(e.target.parentElement.nextElementSibling)
-        const toggle = e.target.parentElement.nextElementSibling.style.display === "none" ? "block" : "none"
-        e.target.parentElement.nextElementSibling.style.display = toggle
+        const toggle = comments.style.display === "none" ? "block" : "none"
+        comments.style.display = toggle
         e.target.textContent === 'Comments ▲' ? e.target.textContent='Comments ▼' : e.target.textContent='Comments ▲'
     }
 

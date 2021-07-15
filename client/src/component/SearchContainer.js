@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchResult from './SearchResult'
 import Grid from '@material-ui/core/Grid';
+// import { DataGrid } from '@material-ui/data-grid';
 
 
 export default function SearchContainer(props) {

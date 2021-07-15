@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Menu} from 'antd';
+import { NavLink } from 'react-router-dom'
 
 export default function Header({logOut, user}) {
   
@@ -26,6 +27,8 @@ export default function Header({logOut, user}) {
     return (
     <div >
         <div className='header' >
+            <NavLink to='/search'>Search</NavLink>
+            <NavLink to='/home'>Home</NavLink>
             <Button id='logout' type="primary" className="button is-primary" onClick={logOut}>Log out</Button>
             <Menu id='menu' mode="inline" style={{ width: 180 }} >
                 <Menu.SubMenu key={2} title='Account'>

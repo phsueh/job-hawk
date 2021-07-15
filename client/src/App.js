@@ -179,6 +179,9 @@ class App extends Component {
             {Array.isArray(this.state.posts) ? <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/> : ''}
           </div>
         </Route>
+        <Route path='/search'>
+          <Home />
+        </Route>
         <Route exact path='/editprofile'>
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
         </Route>

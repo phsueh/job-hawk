@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Search from './Search'
 import SearchContainer from './SearchContainer'
+import { Pagination } from 'antd';
 
 export default class Home extends Component {
 
     state = {
         jobs: {
-            SearchResult: {SearchResultItems:[]}}, 
+            SearchResult: {SearchResultItems:[], SearchResultCountAll: 125}}, 
         searchPosition: ""
     }
 
-    jobsData = () => {
+    searched = ''
+
+    jobsData = (page=1, searchedparam=this.state.searchPosition) => {
+        // console.log(page)
         let host = "data.usajobs.gov";  
-        let userAgent = "hsueh.paul@gmail.com";  
-        let authKey = "2+06EcOimnoYpNL8oC5YLCaoNk/xe5Q5Mvm0hS809Bs=";    
-        fetch(`https://data.usajobs.gov/api/search?Keyword=${this.state.searchPosition}`,      
+        let userAgent = "yisraelg3@gmail.com";  
+        let authKey = "0swdO8Z858CFfgxyCfbD7BOetFc8Q+XbQnA56p2e9Lk=";    
+        fetch(`https://data.usajobs.gov/api/search?Keyword=${searchedparam}&page=${page}`,      
             {    method: 'GET',      
             headers: {     
             "Content-type":"application/json",     
@@ -25,6 +29,7 @@ export default class Home extends Component {
             }  }
         ).then(res => res.json())
         .then((jobsObj) => {
+            // console.log(jobsObj)
             this.setState({
                 jobs: jobsObj
             })
@@ -32,7 +37,7 @@ export default class Home extends Component {
     }
 
     handleSearchResults = (searchedPosition) => {
-        console.log(searchedPosition)
+        // console.log(searchedPosition)
         this.setState({
             searchPosition: searchedPosition
         })
@@ -40,12 +45,17 @@ export default class Home extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        this.searched = this.state.searchPosition
         this.jobsData()
+    }
+
+    handleChange = (e) => {
+        this.jobsData(e, this.searched)
     }
 
     render() {
 
-        console.log(this.state.searchPosition)
+        // console.log(this.state.searchPosition)
 
         // let searchedPosition = this.state.job.filter((positionObj, index) => {
         //     return positionObj.searchResult
@@ -57,6 +67,7 @@ export default class Home extends Component {
                 <Link to='/posts'>Posts</Link> */}
                 <Search handleSearch = {this.handleSearchResults}searchPosition = {this.state.searchPosition} handleSubmit = {this.handleSubmit}/>
                 <SearchContainer jobs={this.state.jobs["SearchResult"]["SearchResultItems"]}/>
+                <Pagination defaultCurrent={1} current total={this.state.jobs.SearchResult.SearchResultCountAll} onChange={this.handleChange} pageSize={25} disabled={this.state.jobs.SearchResult.SearchResultItems.length === 0} showSizeChanger={false} style={{textAlign:'center'}}/>
             </div>
  
         )
