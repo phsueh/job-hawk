@@ -50,8 +50,9 @@ export default function SearchResult(props) {
                     <Typography className={classes2.pos} color="textSecondary">
                         {props.jobDescription.PositionLocationDisplay}
                     </Typography>
-                </CardContent>
                     <Button size='medium' variant="contained" color="primary" target="_blank" href={props.jobDescription.PositionURI} >Apply</Button>
+                </CardContent>
+                    
             </Card>
         </Grid>
         </div>

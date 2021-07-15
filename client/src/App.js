@@ -170,7 +170,7 @@ class App extends Component {
           <ProfileForm updateProfile={this.updateProfile} user={this.state}/>
         </Route>
         <Route exact path='/home'>
-          <div >
+          <div>
             <Profile user={this.state}/>
             <Divider type="vertical"/>
             <PostContainer posts={this.state.posts} userId={this.state.id} addComment={this.addComment} addPost={this.addPost} deletePost={this.deletePost} deleteComment={this.deleteComment}/>

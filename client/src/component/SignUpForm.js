@@ -42,7 +42,7 @@ function SignUpForm(props) {
         <form onSubmit={handleSubmit}>
             <input style={{color:'black'}} type ='text' name='username' id='username' value={formData.username} onChange={handleChange}/>
             <input style={{color:'black'}} type ='password' name='password' id='password' value={formData.password} onChange={handleChange}/>
-            <Button type='submit'>Create Account</Button>
+            <Button type='submit' style={{color:'white'}}>Create Account</Button>
         </form>
 
     )

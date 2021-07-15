@@ -27,7 +27,7 @@ export default function PostContainer({posts, userId, addComment, addPost, delet
     })
     
     return (
-        <div className='border'>
+        <div className='border' style={{backgroundImage: 'url(/background-4.jpg)'}}>
             <h2>Job Forum</h2>
             {posts.length > 0 ? <PostForm userId={userId} addPost={addPost}/> : ''}
             <List className={classes.root}>
