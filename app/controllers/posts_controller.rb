@@ -16,7 +16,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def public
         # byebug
-        posts = Post.where(private: nil)
+        posts = Post.where(private: false)
         render json: posts
     end
 

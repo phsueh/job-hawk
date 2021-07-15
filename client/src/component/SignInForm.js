@@ -66,8 +66,8 @@ class SignInForm extends Component {
             {/* <AppBar position="static">
                 <Toolbar>             */}
                     <form onSubmit={this.handleSubmit} style={{display:'block'}}>
-                    <input style={{color:'black'}} type ='text' name='username' id='username' value={this.state.username} onChange={this.handleChange}/>
-                    <input style={{color:'black'}} type ='password' name='password' id='password' value={this.state.password} onChange={this.handleChange}/>
+                    <input style={{color:'black'}} type ='text' name='username' id='username' value={this.state.username} onChange={this.handleChange} placeholder='Username'/>
+                    <input style={{color:'black'}} type ='password' name='password' id='password' value={this.state.password} onChange={this.handleChange} placeholder='Password'/>
                     <Button type='submit'style={{color:'white'}}>Login</Button>
                     </form>
                 {/* </Toolbar>

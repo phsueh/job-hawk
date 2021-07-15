@@ -60,7 +60,7 @@ div.ant-descriptions-title {
   text-align: center;
   height: 100%;
   overflow: scroll;
-  flex-basis: 50%;
+  flex-basis: 61.8%;
 }
 
 span.ant-descriptions-item-label, span.ant-descriptions-item-content{
@@ -69,8 +69,9 @@ span.ant-descriptions-item-label, span.ant-descriptions-item-content{
 }
 
 div#postsContainer  {
+  padding-top: 50px;
   height: 100%;
   overflow: scroll;
-  flex-basis: 50%;
+  flex-basis: 38.2%;
   text-align: center;
 }
