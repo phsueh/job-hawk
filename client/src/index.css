@@ -58,7 +58,6 @@ div.ant-descriptions-title {
 #profile, span.ant-descriptions-item-label, span.ant-descriptions-item-content  {
   align-content: center;
   text-align: center;
-  background-color: burlywood;
   height: 100%;
   overflow: scroll;
   flex-basis: 50%;
@@ -70,13 +69,8 @@ span.ant-descriptions-item-label, span.ant-descriptions-item-content{
 }
 
 div#postsContainer  {
-  background-color: cadetblue;
   height: 100%;
   overflow: scroll;
   flex-basis: 50%;
   text-align: center;
-}
-
-div#postsContainer > * {
-  background-color: cadetblue;
 }

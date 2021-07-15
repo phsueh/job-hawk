@@ -28,7 +28,7 @@ function PostContainer({posts, userId, addComment, addPost, deletePost, deleteCo
     })
     // console.log(history.location.pathname)
     return (
-        <div id='postsContainer'>
+        <div id='postsContainer' className='border' style={{backgroundImage: 'url(/background-4.jpg)'}}>
             <h2>Job Forum</h2>
             {history.location.pathname === '/' ? '' : <PostForm userId={userId} addPost={addPost}/> }
             <List className={classes.root}>
