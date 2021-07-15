@@ -11,7 +11,8 @@ import { Divider } from 'antd'
 import { Layout, Menu } from 'antd'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const { Footer, Sider, Content } = Layout;
 
@@ -170,6 +171,9 @@ class App extends Component {
         <Route exact path='/'>
           <AppBar position="static" edge='end'>
             <Toolbar>
+            <Typography variant="h3" >
+                    <span style={{color:'white', paddingRight: '50px'}}>JobHawk</span>
+              </Typography>
               <SignInForm login={this.login}/> 
               <SignUpForm login={this.login}/>
             </Toolbar>
