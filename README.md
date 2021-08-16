@@ -4,6 +4,8 @@
 
 Job Hawk is a job search and networking-oriented app built with React and Rails. It leverages the USAJobs API and allows users to contribute content that can be viewed by users or visitors of the app.
 
+![home-page](public/home-page.png) ![user-page](public/user-page.png)
+
 ## Features
 * Users can search for jobs from USAJobs
 * Vistors of website can view public posts that were contributed by users
@@ -14,19 +16,18 @@ Job Hawk is a job search and networking-oriented app built with React and Rails.
 
 - Ruby 2.7.4
 - NodeJS (v14 or higher), and npm
-- Heroku CLI
 - Postgresql
 
 See Environment Setup below for instructions on installing these tools if you
 don't already have them.
 
-## Setup
+## Installation and Setup
 
 **Fork and clone this repository**.
 
 Then run:
 
-```sh
+```
 bundle install
 rails db:create
 npm install --prefix client
@@ -148,7 +149,7 @@ You can also update your npm version with:
 npm i -g npm
 ```
 
-### Sign Up for a [Heroku Account][heroku signup]
+<!-- ### Sign Up for a [Heroku Account][heroku signup]
 
 You can sign up at for a free account at
 [https://signup.heroku.com/devcenter][heroku signup].
@@ -181,7 +182,7 @@ logging in, close the browser window and return to the terminal. You can run
 `heroku whoami` in the terminal to verify that you have logged in successfully.
 
 [heroku signup]: https://signup.heroku.com/devcenter
-[heroku cli]: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+[heroku cli]: https://devcenter.heroku.com/articles/heroku-cli#download-and-install -->
 
 ### Install Postgresql
 
@@ -253,7 +254,7 @@ service:
 ```sh
 brew services start postgresql
 ```
-
+<!-- 
 ## Troubleshooting
 
 If you ran into any errors along the way, here are some things you can try to
@@ -295,4 +296,4 @@ For additional support, check out these guides on Heroku:
 
 [postgres downloads page]: https://postgresapp.com/downloads.html
 [heroku rails deploying guide]: https://devcenter.heroku.com/articles/getting-started-with-rails6
-[troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting
+[troubleshooting guide on heroku]: https://devcenter.heroku.com/articles/getting-started-with-rails6#troubleshooting -->
