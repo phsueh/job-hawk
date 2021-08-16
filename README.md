@@ -186,7 +186,7 @@ logging in, close the browser window and return to the terminal. You can run
 
 ### Install Postgresql
 
-Heroku requires that you use PostgreSQL for your database instead of SQLite.
+If using Heroku, Heroku requires that you use PostgreSQL for your database instead of SQLite.
 PostgreSQL (or just Postgres for short) is an advanced database management
 system with more features than SQLite. If you don't already have it installed,
 you'll need to set it up.
