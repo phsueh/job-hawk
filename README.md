@@ -1,4 +1,4 @@
-# Project Template: React/Rails API
+# Job Hawk
 
 ## Description
 
