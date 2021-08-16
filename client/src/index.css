@@ -41,13 +41,14 @@ div.ant-descriptions-title {
   text-decoration: underline;
 }
 
-/* .container {
-  display: flex; 
+.container {
+  /* display: flex; 
   justify-content: center; 
   align-items: center;
   height: 500px;
-  vertical-align: middle
-} */
+  vertical-align: middle; */
+  overflow: auto;
+}
 
 .mainPageContainer {
   height: 100vh;
