@@ -4,6 +4,12 @@
 
 Job Hawk is a job search and networking-oriented app built with React and Rails. It leverages the USAJobs API and allows users to contribute content that can be viewed by users or visitors of the app.
 
+## Features
+* Users can search for jobs from USAJobs
+* Vistors of website can view public posts that were contributed by users
+* Users can create an account 
+* Users can post public and non public content that can be shared to users and visitors of the app
+
 ## Requirements
 
 - Ruby 2.7.4
@@ -33,12 +39,12 @@ You can use the following commands to run the application:
   [http://localhost:4000](http://localhost:4000)
 - `rails start`: run the frontend and backend together with one command
 
-Make sure to also update this README to include documentation about
+<!-- Make sure to also update this README to include documentation about
 your project. Here's a list of some [awesome readmes][] for inspiration.
 
-[awesome readmes]: https://github.com/matiassingers/awesome-readme
+[awesome readmes]: https://github.com/matiassingers/awesome-readme -->
 
-## Deploying
+<!-- ## Deploying
 
 This application has all the starter code needed to help you deploy your
 application to Heroku. It's recommended to deploy your project early and push up
@@ -90,7 +96,7 @@ You can view your deployed app with:
 
 ```sh
 heroku open
-```
+``` -->
 
 ## Environment Setup
 
