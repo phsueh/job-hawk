@@ -1,9 +1,8 @@
-# Project Template: React/Rails API
+# Job Hawk
 
 ## Description
 
-This project is scaffolded so that you can build a React frontend and Rails
-backend together, and easily deploy them to Heroku.
+Job Hawk is a job search and networking-oriented app built with React and Rails. It leverages the USAJobs API and allows users to contribute content that can be viewed by users or visitors of the app.
 
 ## Requirements
 
