@@ -7,6 +7,7 @@ Job Hawk is a job search and networking-oriented app built with React and Rails.
 ![home-page](public/home-page.png) ![user-page](public/user-page.png)
 
 ## Features
+* See demo [here](https://youtu.be/SSBwSXaRVfI)
 * Users can search for jobs from USAJobs
 * Vistors of website can view public posts that were contributed by users
 * Users can create an account 
